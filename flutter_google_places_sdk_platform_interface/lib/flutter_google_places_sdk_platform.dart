@@ -81,6 +81,7 @@ abstract class FlutterGooglePlacesSdkPlatform extends PlatformInterface {
     List<String>? countries,
     List<String> placeTypesFilter = const [],
     bool? newSessionToken,
+      String? sessionToken,
     LatLng? origin,
     LatLngBounds? locationBias,
     LatLngBounds? locationRestriction,
@@ -100,6 +101,7 @@ abstract class FlutterGooglePlacesSdkPlatform extends PlatformInterface {
     String placeId, {
     required List<PlaceField> fields,
     bool? newSessionToken,
+      String? sessionToken,
     String? regionCode,
   }) {
     throw UnimplementedError('fetchPlaceDetails() has not been implemented.');
