@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_google_places_sdk_platform_interface/flutter_google_places_sdk_platform_interface.dart';
 
 const String _CHANNEL_NAME = 'plugins.msh.com/flutter_google_places_sdk';
-
 const MethodChannel _channel = MethodChannel(_CHANNEL_NAME);
 
 /// An implementation of [FlutterGooglePlacesSdkPlatform] that uses method channels.
@@ -59,6 +57,7 @@ class FlutterGooglePlacesSdkMethodChannel
     List<String>? countries,
     List<String> placeTypesFilter = const [],
     bool? newSessionToken,
+    String? sessionToken, // ✅ new parameter
     LatLng? origin,
     LatLngBounds? locationBias,
     LatLngBounds? locationRestriction,
@@ -73,6 +72,7 @@ class FlutterGooglePlacesSdkMethodChannel
         'countries': countries ?? [],
         'typesFilter': placeTypesFilter,
         'newSessionToken': newSessionToken,
+        'sessionToken': sessionToken, // ✅ pass down
         'origin': origin?.toJson(),
         'locationBias': locationBias?.toJson(),
         'locationRestriction': locationRestriction?.toJson(),
@@ -96,6 +96,7 @@ class FlutterGooglePlacesSdkMethodChannel
     String placeId, {
     required List<PlaceField> fields,
     bool? newSessionToken,
+    String? sessionToken, // ✅ new parameter
     String? regionCode,
   }) {
     return _channel.invokeMapMethod(
@@ -104,6 +105,7 @@ class FlutterGooglePlacesSdkMethodChannel
         'placeId': placeId,
         'fields': fields.map((e) => e.value).toList(),
         'newSessionToken': newSessionToken,
+        'sessionToken': sessionToken, // ✅ pass down
         'regionCode': regionCode,
       },
     ).then(_responseFromPlaceDetails);
