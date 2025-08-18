@@ -16,6 +16,8 @@ import java.io.ByteArrayOutputStream
 import java.lang.reflect.Field
 import java.util.*
 import android.widget.Toast
+import android.util.Log
+
 
 
 /** FlutterGooglePlacesSdkPlugin */
@@ -78,7 +80,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val locationRestriction =
                     rectangularBoundsFromMap(call.argument<Map<String, Any?>>("locationRestriction"))
 
-                Log.i("sessionToken_autoComplete": sessionToken.toString())
+                Log.i("sessionToken_autoComplete", sessionToken.toString())
                 
 
                 val request = FindAutocompletePredictionsRequest.builder()
@@ -113,7 +115,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val regionCode = call.argument<String>("regionCode")
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
                 val sessionToken = getSessionToken(newSessionToken == true)
-                Log.i("sessionToken_details": sessionToken.toString())
+                Log.i("sessionToken_details", sessionToken.toString())
 
 
                 val request = FetchPlaceRequest.builder(placeId, fields)
