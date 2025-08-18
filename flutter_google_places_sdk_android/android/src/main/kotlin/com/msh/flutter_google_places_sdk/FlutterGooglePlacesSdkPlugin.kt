@@ -65,7 +65,6 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(Places.isInitialized())
             }
             METHOD_FIND_AUTOCOMPLETE_PREDICTIONS -> {
-                Toast.makeText(applicationContext, "Another toast!", Toast.LENGTH_LONG).show()
                 val query = call.argument<String>("query")
                 val countries = call.argument<List<String>>("countries") ?: emptyList()
                 val placeTypesFilter = call.argument<List<String>>("typesFilter") ?: emptyList()
@@ -78,6 +77,9 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                     rectangularBoundsFromMap(call.argument<Map<String, Any?>>("locationBias"))
                 val locationRestriction =
                     rectangularBoundsFromMap(call.argument<Map<String, Any?>>("locationRestriction"))
+
+                Toast.makeText(applicationContext, sessionToken.toString(), Toast.LENGTH_LONG).show()
+
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setQuery(query)
                     .setLocationBias(locationBias)
