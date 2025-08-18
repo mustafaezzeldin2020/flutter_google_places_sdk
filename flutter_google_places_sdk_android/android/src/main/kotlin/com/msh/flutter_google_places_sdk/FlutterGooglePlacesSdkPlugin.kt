@@ -70,8 +70,8 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val countries = call.argument<List<String>>("countries") ?: emptyList()
                 val placeTypesFilter = call.argument<List<String>>("typesFilter") ?: emptyList()
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
-                val sessionToken = call.argument<String>("sessionToken")
-
+               // val sessionToken = call.argument<String>("sessionToken")
+                val sessionToken = getSessionToken(newSessionToken==true)
 
                 val origin = latLngFromMap(call.argument<Map<String, Any?>>("origin"))
                 val locationBias =
@@ -109,10 +109,10 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                     ?: emptyList()
                 val regionCode = call.argument<String>("regionCode")
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
-                val sessionToken = call.argument<String>("sessionToken")
+               // val sessionToken = call.argument<String>("sessionToken")
 
                 val request = FetchPlaceRequest.builder(placeId, fields)
-                    .setSessionToken(sessionToken)
+                    .setSessionToken(lastSessionToken)
                     .setRegionCode(regionCode)
                     .build()
                 client.fetchPlace(request).addOnCompleteListener { task ->
