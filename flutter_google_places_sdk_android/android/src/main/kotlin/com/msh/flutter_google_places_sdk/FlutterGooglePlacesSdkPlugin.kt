@@ -111,7 +111,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                     ?: emptyList()
                 val regionCode = call.argument<String>("regionCode")
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
-               // val sessionToken = call.argument<String>("sessionToken")
+                val sessionToken = getSessionToken(newSessionToken == true)
                 print("sessionToken_details: ${sessionToken.toString()}")
 
 
