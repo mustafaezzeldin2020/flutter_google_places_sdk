@@ -15,6 +15,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import java.io.ByteArrayOutputStream
 import java.lang.reflect.Field
 import java.util.*
+import android.util.Log
 
 /** FlutterGooglePlacesSdkPlugin */
 class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
@@ -74,6 +75,8 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val locationRestriction =
                     rectangularBoundsFromMap(call.argument<Map<String, Any?>>("locationRestriction"))
                 val sessionToken = getSessionToken(newSessionToken == true)
+                Log.i("sessionToken_autoComplete", sessionToken.toString())
+
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setQuery(query)
                     .setLocationBias(locationBias)
@@ -105,10 +108,13 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                     ?: emptyList()
                 val regionCode = call.argument<String>("regionCode")
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
+                val sessionToken = getSessionToken(newSessionToken == true)
                 val request = FetchPlaceRequest.builder(placeId, fields)
-                    .setSessionToken(getSessionToken(newSessionToken == true))
+                    .setSessionToken(sessionToken)
                     .setRegionCode(regionCode)
                     .build()
+                Log.i("sessionToken_detailed", sessionToken.toString())
+
                 client.fetchPlace(request).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val place = placeToMap(task.result?.place)
