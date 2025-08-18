@@ -119,7 +119,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
 
 
                 val request = FetchPlaceRequest.builder(placeId, fields)
-                    .setSessionToken(lastSessionToken)
+                    .setSessionToken(sessionToken)
                     .setRegionCode(regionCode)
                     .build()
                 client.fetchPlace(request).addOnCompleteListener { task ->
