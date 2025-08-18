@@ -15,6 +15,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import java.io.ByteArrayOutputStream
 import java.lang.reflect.Field
 import java.util.*
+import android.widget.Toast
+
 
 /** FlutterGooglePlacesSdkPlugin */
 class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
@@ -63,6 +65,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(Places.isInitialized())
             }
             METHOD_FIND_AUTOCOMPLETE_PREDICTIONS -> {
+                Toast.makeText(applicationContext, "Another toast!", Toast.LENGTH_LONG).show()
                 val query = call.argument<String>("query")
                 val countries = call.argument<List<String>>("countries") ?: emptyList()
                 val placeTypesFilter = call.argument<List<String>>("typesFilter") ?: emptyList()
