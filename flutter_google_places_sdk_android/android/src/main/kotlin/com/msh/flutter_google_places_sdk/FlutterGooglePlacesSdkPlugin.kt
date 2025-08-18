@@ -124,6 +124,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                     .build()
                 client.fetchPlace(request).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        lastSessionToken = null
                         val place = placeToMap(task.result?.place)
                         print("FetchPlace Result: $place")
                         result.success(place)
@@ -302,7 +303,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
 
     private fun getSessionToken(force: Boolean): AutocompleteSessionToken {
         val localToken = lastSessionToken
-        if (force || localToken == null) {
+        if (localToken == null) {
             return AutocompleteSessionToken.newInstance()
         }
         return localToken
