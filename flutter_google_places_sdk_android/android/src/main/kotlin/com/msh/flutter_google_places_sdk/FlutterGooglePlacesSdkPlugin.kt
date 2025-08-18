@@ -78,7 +78,8 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val locationRestriction =
                     rectangularBoundsFromMap(call.argument<Map<String, Any?>>("locationRestriction"))
 
-                print("sessionToken_autoComplete: ${sessionToken.toString()}")
+                Log.i("sessionToken_autoComplete": sessionToken.toString())
+                
 
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setQuery(query)
@@ -112,7 +113,7 @@ class FlutterGooglePlacesSdkPlugin : FlutterPlugin, MethodCallHandler {
                 val regionCode = call.argument<String>("regionCode")
                 val newSessionToken = call.argument<Boolean>("newSessionToken")
                 val sessionToken = getSessionToken(newSessionToken == true)
-                print("sessionToken_details: ${sessionToken.toString()}")
+                Log.i("sessionToken_details": sessionToken.toString())
 
 
                 val request = FetchPlaceRequest.builder(placeId, fields)
