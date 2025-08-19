@@ -46,6 +46,7 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
             let locationBias = rectangularBoundsFromMap(argument: args["locationBias"] as? Dictionary<String, Any?>)
             let locationRestriction = rectangularBoundsFromMap(argument: args["locationRestriction"] as? Dictionary<String, Any?>)
             let sessionToken = getSessionToken(force: newSessionToken == true)
+            NSLog("sessionTokenAutoComplete: %@", sessionToken.description)
             
             // Create a type filter.
             let filter = GMSAutocompleteFilter()
@@ -81,6 +82,7 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
             })
             let newSessionToken = args["newSessionToken"] as? Bool ?? false
             let sessionToken = getSessionToken(force: newSessionToken == true)
+            NSLog("sessionTokenDetails: %@", sessionToken.description)
             
             placesClient.fetchPlace(fromPlaceID: placeId,
                                     placeFields: fields ?? GMSPlaceField.all,
