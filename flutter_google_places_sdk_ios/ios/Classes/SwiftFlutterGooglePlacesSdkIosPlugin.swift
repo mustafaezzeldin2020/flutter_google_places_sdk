@@ -93,6 +93,7 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
                         details: nil
                     ))
                 } else {
+                    self.lastSessionToken = nil
                     let mappedPlace = self.placeToMap(place: place)
                     result(mappedPlace)
                 }
@@ -317,7 +318,7 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
 
     private func getSessionToken(force: Bool) -> GMSAutocompleteSessionToken! {
         let localToken = lastSessionToken
-        if (force || localToken == nil) {
+        if (localToken == nil) {
             return GMSAutocompleteSessionToken.init()
         }
         return localToken
