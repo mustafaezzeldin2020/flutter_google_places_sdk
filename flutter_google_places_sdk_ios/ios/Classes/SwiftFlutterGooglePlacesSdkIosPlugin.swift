@@ -47,11 +47,11 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
             let locationRestriction = rectangularBoundsFromMap(argument: args["locationRestriction"] as? Dictionary<String, Any?>)
             let sessionToken = getSessionToken(force: newSessionToken == true)
             if let unwrappedToken = sessionToken {
-                print("SessionTokenAuto: \(unwrappedToken.description)")
-            } else {
-                print("Failed to create session token")
-            }
-            
+                NSLog("SessionTokenAuto: %@", unwrappedToken.description)
+                } else {
+                NSLog("Failed to create session token")
+                }
+                        
             // Create a type filter.
             let filter = GMSAutocompleteFilter()
             filter.types = placeTypeFilters;
@@ -86,11 +86,11 @@ public class SwiftFlutterGooglePlacesSdkIosPlugin: NSObject, FlutterPlugin {
             })
             let newSessionToken = args["newSessionToken"] as? Bool ?? false
             let sessionToken = getSessionToken(force: newSessionToken == true)
-             if let unwrappedToken = sessionToken {
-                print("SessionTokenDetails: \(unwrappedToken.description)")
-            } else {
-                print("Failed to create session token")
-            }
+              if let unwrappedToken = sessionToken {
+                NSLog("SessionTokenDetails: %@", unwrappedToken.description)
+                } else {
+                NSLog("Failed to create session token")
+                }
             
             placesClient.fetchPlace(fromPlaceID: placeId,
                                     placeFields: fields ?? GMSPlaceField.all,
