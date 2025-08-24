@@ -72,7 +72,6 @@ class FlutterGooglePlacesSdk {
     List<String>? countries,
     List<PlaceTypeFilter> placeTypesFilter = const [],
     bool? newSessionToken,
-    String? sessionToken, // 👈 added
     LatLng? origin,
     LatLngBounds? locationBias,
     LatLngBounds? locationRestriction,
@@ -83,7 +82,6 @@ class FlutterGooglePlacesSdk {
           placeTypesFilter:
               placeTypesFilter.map((type) => type.apiExpectedValue).toList(),
           newSessionToken: newSessionToken,
-          sessionToken: sessionToken, // 👈 pass through
           origin: origin,
           locationBias: locationBias,
           locationRestriction: locationRestriction,
@@ -94,10 +92,9 @@ class FlutterGooglePlacesSdk {
   Future<FetchPlaceResponse> fetchPlace(
     String placeId, {
     required List<PlaceField> fields,
-    String? sessionToken, // 👈 added
   }) {
     return _addMethodCall(() =>
-        platform.fetchPlace(placeId, fields: fields, sessionToken: sessionToken));
+        platform.fetchPlace(placeId, fields: fields));
   }
 
   /// Fetches a photo of a place.
